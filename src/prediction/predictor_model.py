@@ -45,6 +45,7 @@ class Classifier:
             n_estimators=self.n_estimators,
             max_samples=self.max_samples,
             bootstrap=self.bootstrap,
+            random_state=0
         )
         return model
 
@@ -116,9 +117,9 @@ class Classifier:
     def __str__(self):
         return (
             f"Model name: {self.model_name} ("
-            f"C: {self.C}, "
-            f"degree: {self.degree}, "
-            f"kernel: {self.kernel})"
+            f"bootstrap: {self.bootstrap}, "
+            f"max_samples: {self.max_samples}, "
+            f"n_estimators: {self.n_estimators})"
         )
 
 
@@ -129,8 +130,8 @@ def train_predictor_model(
     Instantiate and train the predictor model.
 
     Args:
-        train_X (pd.DataFrame): The training data inputs.
-        train_y (pd.Series): The training data labels.
+        train_inputs (pd.DataFrame): The training data inputs.
+        train_targets (pd.Series): The training data labels.
         hyperparameters (dict): Hyperparameters for the classifier.
 
     Returns:
